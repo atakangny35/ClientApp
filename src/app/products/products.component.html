@@ -18,19 +18,19 @@
           <tbody>
       
             <tr *ngFor="let p of products" [class.bg-secondary]="p.isActive==false">
-              <td>{{p.id}}</td>
+              <td>{{p.productID}}</td>
               <td>{{p.name}}</td>
               <td>{{p.price}}</td>
               <td> <button class="btn btn-primary" (click)='onSelectedProduct(p)'>Edit</button>  
-                <button class="btn btn-danger" (click)="deleteProduct(p.id)">Delete</button> 
+                <button class="btn btn-danger" (click)="deleteProduct(p.productID)">Delete</button> 
              </td>
             </tr>
           </tbody>
       </table>
      </div>
      <div class="col-md-5">
-       <app-product-form></app-product-form>
-       <app-product-details [product]="selectedProducts"></app-product-details>
+       <app-product-form [products]="products"></app-product-form>
+       <app-product-details [product]="selectedProducts" [products]="products"></app-product-details>
      </div>
    </div>
  </div>

@@ -14,18 +14,24 @@ export class ProductsComponent implements OnInit {
   products !: Product[];
   selectedProducts! :Product;
   ngOnInit(): void {
-    this.products=this.productService.getProducts();
+    this.getProducts();
   }
 
+   getProducts(){
+      
+       this.productService.getProducts().subscribe( p=>{this.products=p});
+  }
   
   deleteProduct(id:number)
-  {
-      this.productService.deleteProduct(id);
-      this.ngOnInit();
+  {   console.log(id);
+      this.productService.deleteProduct(id).subscribe();
+     // this.ngOnInit();
+      this.products=this.products.filter(p=>p.productID!=id);
     
   }
 
-  onSelectedProduct(product: Product){
+  onSelectedProduct(product: Product)
+  {
     return this.selectedProducts=product;
   }
 

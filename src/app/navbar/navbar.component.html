@@ -15,16 +15,25 @@
           <a class="nav-link" href="#">Messages</a>
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="loggedIn()">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Login <span class="sr-only"></span></a>
+          <a class="nav-link" href="#"> Username <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" (click)="logOut()" href="#">Logout</a>
         </li>
       </ul>
+      <form *ngIf="!loggedIn()" #form="ngForm"  class="d-flex" (ngSubmit)="login()">
+       <input class="form-control form-control-sm me-2 mr-1" type="text" placeholder="Username" required [(ngModel)]="model.username" name="username">
+        <span for=username></span>
+       <input class="form-control form-control-sm me-2" type="password" placeholder="Search" required minlength="5" [(ngModel)]="model.password"  name="password">
+       <button class="btn btn-outline-success btn-sm ml-1" type="submit" [disabled]="form.invalid">Login</button>
+      </form>
     </div>
   </nav>
+
+
+  

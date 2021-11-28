@@ -1,0 +1,41 @@
+
+<div class="cantainer">
+
+<div class="row">
+
+    <div class="col-6">
+<form (ngSubmit)="Register()" #form="ngForm">
+    <h2>Register</h2>
+    <hr>
+    <div class="form-group">      
+        <input type="text" class="form-control" #name="ngModel" required [(ngModel)]="model.name" placeholder="Name" name="name">
+        <span for="name" *ngIf="name.invalid && name.touched" class="text-warning">This Field İs required!</span>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" #username="ngModel" required name="username" [(ngModel)]="model.username" placeholder="username">
+        <span for="name" *ngIf="username.invalid && username.touched" class="text-warning">This Field İs required!</span>
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" #email="ngModel" required name="email" [(ngModel)]="model.email" placeholder="email" >
+        <span for="name" *ngIf="email.invalid && email.touched" class="text-warning">This Field İs required!</span>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" #password="ngModel" required name="password" [(ngModel)]="model.password" placeholder="password">
+        <span for="name" *ngIf="password.invalid && password.touched" class="text-warning">This Field İs required!</span>
+    </div>
+    <button [disabled]="form.invalid" type="submit"  class="btn-primary btn ">Submit</button>
+</form>
+
+<div *ngIf="!isSucces">
+        <p *ngFor="let error of errors" class="text-warning">{{error.description}}</p>
+</div>
+
+</div>
+
+   
+</div>
+
+</div>
+
+
+

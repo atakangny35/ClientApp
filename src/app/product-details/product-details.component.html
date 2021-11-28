@@ -19,7 +19,7 @@
                 <div class="invalid-feedback">Example invalid feedback text</div>
             </div>
     </div>
-    <button class="btn btn-primary" >Save Products</button>
-    (click)='addProduct(name.value,price.value,isactive.checked); name.value="";price.value="";isactive.checked=false'
+    <button class="btn btn-primary" (click)=updateProduct(name.value,price.value,isactive.checked,product) >Update</button>
+    
 
 </div>
