@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from '../model';
+
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -10,17 +12,19 @@ import { AuthService } from '../_services/auth.service';
 export class NavbarComponent implements OnInit {
   model :any = {};
   Login !:Login;
-  constructor(private authService :AuthService) { }
+  Username!:string;
+  constructor(public authService :AuthService, private router : Router) { }
 
   ngOnInit(): void {
   }
   login()
   { 
     this.authService.Login(this.model).subscribe(next =>{
+       // this.Username= this.authService.decodedToken.unique_name;
+       
+      this.router.navigate(['/members']);
       
-      
-      
-    },error=> {console.log("başarısız");})
+    },error=> {console.log(error);})
 
     
    //this.authService.Login(this.model).subscribe(res=>{console.log("başarılı");})
@@ -33,6 +37,7 @@ export class NavbarComponent implements OnInit {
   logOut()
   {
     this.authService.LogOut();
+    this.router.navigate(['/home']);
 
   }
 }

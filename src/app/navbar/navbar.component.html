@@ -3,21 +3,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">SocialApp</a>
+      <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active" >SocialApp</a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/members']" routerLinkActive="active">Members</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
+          <a class="nav-link"  *ngIf="loggedIn()" [routerLink]="['/messages']" routerLinkActive="active"  >Messages</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
+          <a class="nav-link" *ngIf="loggedIn()" [routerLink]="['/friends']" routerLinkActive="active"  >Friends</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0" *ngIf="loggedIn()">
         <li class="nav-item active">
-          <a class="nav-link" href="#"> Username <span class="sr-only"></span></a>
+          <a class="nav-link" href="#"> {{authService.decodedToken.unique_name}} <span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Register</a>
@@ -27,10 +27,12 @@
         </li>
       </ul>
       <form *ngIf="!loggedIn()" #form="ngForm"  class="d-flex" (ngSubmit)="login()">
+        <div class="form-group">
        <input class="form-control form-control-sm me-2 mr-1" type="text" placeholder="Username" required [(ngModel)]="model.username" name="username">
-        <span for=username></span>
+       
+      </div>
        <input class="form-control form-control-sm me-2" type="password" placeholder="Search" required minlength="5" [(ngModel)]="model.password"  name="password">
-       <button class="btn btn-outline-success btn-sm ml-1" type="submit" [disabled]="form.invalid">Login</button>
+       <button class="btn btn-outline-success btn-sm ml-1" type="submit">Login</button>
       </form>
     </div>
   </nav>
